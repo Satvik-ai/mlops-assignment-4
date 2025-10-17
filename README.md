@@ -53,8 +53,6 @@
   - Setup Git Repository with `dev` and `main` branch
   - Setup DVC with GCS bucket as remote storage
   - Created YAML file for GitHub Actions
-
----
   - Pushed the local working directory to remote repo on GitHub
 
 ---

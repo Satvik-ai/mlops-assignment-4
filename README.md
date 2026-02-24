@@ -1,58 +1,156 @@
-# Iris Classification ML Project with DVC Tracking and Continuous Integration (CI) with GitHub Actions
+# 🌸 Iris Classification ML Project with DVC Tracking and CI (GitHub Actions)
 
-**MLOps - Week 4 - Assignment - 21f1000344**
+This project demonstrates a **production-style machine learning workflow** that combines:
 
-## Assignment Objective : 
-- Setup IRIS Classification Training pipeline into a GitHub repository with two branches dev and main
-- Create evaluation and data validation unit tests using pytest or unittest
-- For evaluation and testing, configure the Continuous Integration (CI) with GitHub Actions to fetch the model and data needed for evaluation from DVC configured in Week-3
-- Push inclusion of pytest code changes to dev branch and raise Pull Request to main branch
-- Every branch should have its own CI on push or PR merge
-- Run a sanity test using GitHub actions printing a report as a comment using cml
+- Data & model versioning with **DVC**
+- Automated testing with **pytest**
+- Continuous Integration using **GitHub Actions**
+- Experiment reproducibility with **CML reports**
+
+The repository simulates a real-world ML development lifecycle with **branch-based CI**, automated validation, and reproducible pipelines.
+
+---
+
+## 🎯 Assignment Objective
+
+- Set up Iris Classification training pipeline in a GitHub repository  
+- Maintain two branches: `dev` and `main`  
+- Implement **data validation and model evaluation tests**  
+- Configure **CI using GitHub Actions**  
+- Fetch model and data from **DVC remote storage**  
+- Trigger CI on push and pull requests for both branches  
+- Generate sanity test report as a **CML comment**  
+- Follow a proper **PR workflow from dev → main**
+
+---
+
+## 🗂️ Repository Structure
+
+```
+├── data/ # Dataset tracked with DVC
+│ └── iris.csv
+├── model/ # Trained model artifact
+│ └── iris_model.pkl
+├── src/
+│ └── train.py # Training script
+├── tests/
+│ ├── test_data_validation.py # Data validation tests
+│ └── test_model_evaluation.py # Model evaluation tests
+├── requirements.txt # Dependencies for CI
+├── .github/workflows/
+│ ├── ci-dev.yml # CI pipeline for dev branch
+│ └── ci-main.yml # CI pipeline for main branch
+├── week4_GA_setup.ipynb # Setup notebook
+└── README.md
+```
 
 
 ---
 
-## Files
+## 📁 Files Description
 
-### 1. `data` folder
-- **Key Utilities:**
-  - Stores `iris.csv` data
+### 1️⃣ data/
 
-### 2. `model` folder
-- **Key Utilities:**
-  - Stores the trained iris classification model
-
-### 3. `src/train.py`
-- **Key Utilities:**
-  - Loads the `iris.csv` 
-  - Trains a `RandomForestClassifier` model
-
-### 4. `tests/test_data_validation.py` and `tests/test_model_evaluation`
-- **Key Utilities:**
-  - Runs unit tests using pytest on data and model
-
-### 5. `requirements.txt`
-- **Key Utilities:**
-  - List of required packages for the Continuous Integration (CI) with GitHub Actions
-
-### 6. `.github/worflows/ci-dev.yml` and `.github/worflows/ci-main.yml`
-- **Key Utilities:**
-  - YAML file for configuring GitHub Actions to perform Continuous Integration (CI)
-  - `ci-dev.yml` perfroms CI for `dev` branch on push and pull request
-  - `ci-main.yml` perfroms CI for `main` branch on push and pull request
-  - On push, CI for the respective branch will be triggered
-  - On pull request, CI for the both the branch be triggered
-  - Fetches the model and data needed for evaluation from DVC
-  - Runs sanity test and prints report as a comment using cml
-
-### 7. `week4_GA_setup.ipynb`
-- **Key Utilities:**
-  - Created in Vertex AI workbench
-  - Serves as an interface for performing actions local working directory
-  - Setup Git Repository with `dev` and `main` branch
-  - Setup DVC with GCS bucket as remote storage
-  - Created YAML file for GitHub Actions
-  - Pushed the local working directory to remote repo on GitHub
+**Purpose:**  
+Stores the Iris dataset (`iris.csv`) tracked with DVC.
 
 ---
+
+### 2️⃣ model/
+
+**Purpose:**  
+Contains the trained Iris classification model artifact.
+
+---
+
+### 3️⃣ src/train.py
+
+**Key Functions:**
+
+- Loads dataset from `data/iris.csv`  
+- Trains a `RandomForestClassifier`  
+- Saves trained model to `model/` directory  
+
+---
+
+### 4️⃣ tests/
+
+#### test_data_validation.py
+- Validates schema, null values, and dataset integrity  
+
+#### test_model_evaluation.py
+- Evaluates model performance metrics  
+- Ensures model meets minimum accuracy threshold  
+
+---
+
+### 5️⃣ requirements.txt
+
+Contains dependencies required to run:
+
+- Training pipeline  
+- Unit tests  
+- CI workflow  
+
+---
+
+### 6️⃣ GitHub Actions Workflows
+
+#### `.github/workflows/ci-dev.yml`
+- Runs CI on **push and pull request to dev branch**
+
+#### `.github/workflows/ci-main.yml`
+- Runs CI on **push and pull request to main branch**
+
+**CI Pipeline Steps:**
+
+1. Checkout repository  
+2. Pull data and model from DVC remote  
+3. Install dependencies  
+4. Run pytest  
+5. Execute sanity checks  
+6. Generate CML report comment  
+
+---
+
+### 7️⃣ week4_GA_setup.ipynb
+
+**Purpose:**  
+Notebook used to set up the project environment.
+
+**Includes:**
+
+- Git repository initialization  
+- Branch setup (`dev`, `main`)  
+- DVC configuration with GCS remote  
+- GitHub Actions workflow creation  
+- Pushing code to GitHub  
+
+---
+
+## ⚙️ Tech Stack
+
+- Python  
+- Scikit-learn  
+- DVC (Data Version Control)  
+- Git & GitHub  
+- GitHub Actions  
+- Pytest  
+- CML (Continuous Machine Learning)  
+- Google Cloud Storage (GCS)  
+
+---
+
+## 🔄 CI Workflow Overview
+
+1. Developer pushes code to `dev`  
+2. CI pipeline runs automatically  
+3. Tests validate data and model  
+4. CML posts report on PR  
+5. PR merged into `main`  
+6. Main branch CI validates production pipeline  
+
+---
+
+## 🎥 Video Presentation  
+[▶️ Click Here](https://drive.google.com/file/d/1CGeGB1toJF41kvyLthlVbEpgCEYZqJf2/view?usp=drive_link)
